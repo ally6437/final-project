@@ -1,0 +1,29 @@
+<div id="<%= dom_id product %>">
+  <p>
+    <strong>Name:</strong>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= product.price %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= product.category_id %>
+  </p>
+
+  <p>
+    <%if product.image.present? %>
+    <figure class="image">
+        <%= image_tag product.image.variant(resize_to_limit: [50,50])%>
+        </figure>
+    <%end%>
+  </p>
+</div>
