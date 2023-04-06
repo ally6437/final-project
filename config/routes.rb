@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :order_items
   resources :products, only: [:index, :show]
-  resources :categories, only: [:show]
+  resources :categories
   resources :users
   root to: "products#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
