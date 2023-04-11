@@ -28,12 +28,15 @@ end
 # Create 100 products
 100.times do
   product = Product.create(
-    name: Faker::Commerce.product_name,
+    name: Faker::Flower.name,
     description: Faker::Lorem.sentence(word_count: 5),
     price: Faker::Commerce.price(range: 5.0..50.0),
     category_id: Category.pluck(:id).sample
   )
 end
+
+image_url = "https://source.unsplash.com/600x600/?flowers,#{product.name.downcase}"
+product.image.attach(io: URI.open(image_url), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
 
 puts "Created #{Category.count} categories."
 puts "Created #{Product.count} products."

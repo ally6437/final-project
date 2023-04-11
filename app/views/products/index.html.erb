@@ -23,4 +23,11 @@
   <div>
     <%= link_to product.name, product_path(product) %>
   </div>
+  <div>
+  <% if product.image.attached? %>
+            <%= image_tag product.image.variant(resize: "100x100"), alt: "#{product.name} image" %>
+          <% else %>
+            No image available
+          <% end %>
+  </div>
 <% end %>
