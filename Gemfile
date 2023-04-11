@@ -71,6 +71,8 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'csv'
+gem 'down'
 gem 'bulma-rails', '~> 0.9.3'
 gem 'activeadmin'
 gem 'devise'

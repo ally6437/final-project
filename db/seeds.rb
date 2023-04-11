@@ -9,6 +9,8 @@
 # db/seeds.rb
 
 
+require 'csv'
+
 CartItem.destroy_all
 Cart.destroy_all
 OrderItem.destroy_all
@@ -18,25 +20,24 @@ Product.destroy_all
 Category.destroy_all
 User.destroy_all
 
-# Create categories
-category_names = ['Roses', 'Lilies', 'Tulips', 'Daisies']
+csv_text = File.read(Rails.root.join('db', 'flowers.csv'))
+csv = CSV.parse(csv_text, headers: true)
 
-category_names.each do |name|
-  Category.create(name: name)
-end
-
-# Create 100 products
-100.times do
+csv.each do |row|
+  category = Category.find_or_create_by(name: row['Flower group'])
   product = Product.create(
-    name: Faker::Flower.name,
-    description: Faker::Lorem.sentence(word_count: 5),
+    name: row['Flower name'],
+    description: row['Description'],
     price: Faker::Commerce.price(range: 5.0..50.0),
-    category_id: Category.pluck(:id).sample
+    category: category
   )
-end
 
-image_url = "https://source.unsplash.com/600x600/?flowers,#{product.name.downcase}"
-product.image.attach(io: URI.open(image_url), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
+  image_url = row['url']
+  temp_image = Down.download(image_url)
+  product.image.attach(io: File.open(temp_image.path), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
+  temp_image.close
+  temp_image.unlink
+end
 
 puts "Created #{Category.count} categories."
 puts "Created #{Product.count} products."

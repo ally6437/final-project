@@ -111,6 +111,7 @@ GEM
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    csv (3.2.6)
     date (3.3.3)
     debug (1.7.2)
       irb (>= 1.5.0)
@@ -121,6 +122,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    down (5.4.0)
+      addressable (~> 2.8)
     erubi (1.12.0)
     execjs (2.8.1)
     faker (3.1.1)
@@ -301,8 +304,10 @@ DEPENDENCIES
   bulma-rails (~> 0.9.3)
   capybara
   carrierwave
+  csv
   debug
   devise
+  down
   faker
   image_processing
   importmap-rails
