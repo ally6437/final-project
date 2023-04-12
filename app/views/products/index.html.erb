@@ -17,14 +17,14 @@
     <div class="column is-one-quarter">
       <div class="card">
         <% if product.image.attached? %>
-          <%= image_tag product.image.variant(resize: "100x100"), alt: "#{product.name} image", class: "card-image" %>
+          <%= image_tag product.image.variant(resize: "200x200"), alt: "#{product.name} image", class: "card-image" %>
         <% else %>
           <div class="card-image">No image available</div>
         <% end %>
         <div class="card-content">
           <div class="content">
             <%= link_to product.name, product_path(product), class: "has-text-weight-bold" %>
-            <p><%= truncate(product.description, length: 50) %></p>
+
           </div>
         </div>
       </div>
