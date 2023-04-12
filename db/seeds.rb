@@ -31,9 +31,17 @@ csv.each do |row|
     price: Faker::Commerce.price(range: 5.0..50.0),
     category: category
   )
+  match = product.name.match(/(\w+)\s*\((\w+)/)
+  if match
+    first_word, bracket_word = match.captures
+    keywords = "#{first_word},#{bracket_word}"
+    image_url = "https://source.unsplash.com/600x600/?#{keywords}"
+    product.image.attach(io: URI.open(image_url), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
+  else
 
     image_url = "https://source.unsplash.com/600x600/?flowers,#{product.name.downcase.gsub(' ', '-')}"
     product.image.attach(io: URI.open(image_url), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
+end
 end
 
 puts "Created #{Category.count} categories."

@@ -76,9 +76,9 @@ gem 'bulma-rails', '~> 0.9.3'
 gem 'activeadmin'
 gem 'devise'
 gem 'image_processing'
-gem 'carrierwave'       # image uploads
-gem 'mini_magick'       #  image processing
-gem 'ransack'           # search and filtering
+#gem 'carrierwave'       # image uploads
+#gem 'mini_magick'       #  image processing
+#gem 'ransack'           # search and filtering
 gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'stripe'
