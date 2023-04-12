@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :set_categories
 
   def index
-    @products = Product.all
+    #@products = Product.all
+    @products = Product.all.page(params[:page]).per(12)
   end
 
   def show
