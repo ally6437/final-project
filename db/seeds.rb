@@ -32,11 +32,8 @@ csv.each do |row|
     category: category
   )
 
-  image_url = row['url']
-  temp_image = Down.download(image_url)
-  product.image.attach(io: File.open(temp_image.path), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
-  temp_image.close
-  temp_image.unlink
+    image_url = "https://source.unsplash.com/600x600/?flowers,#{product.name.downcase.gsub(' ', '-')}"
+    product.image.attach(io: URI.open(image_url), filename: "#{product.name.parameterize}.jpg", content_type: 'image/jpeg')
 end
 
 puts "Created #{Category.count} categories."

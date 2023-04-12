@@ -72,7 +72,6 @@ group :test do
 end
 
 gem 'csv'
-gem 'down'
 gem 'bulma-rails', '~> 0.9.3'
 gem 'activeadmin'
 gem 'devise'
