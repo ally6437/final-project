@@ -8,9 +8,17 @@
     <%= form.text_field :query, value: params[:query], class: "input" %>
   </div>
   <div class="control">
+    <%#= form.submit "Search", class: "button is-info" %>
+    <%= form.label :category_id, "Category", class: "label" %>
+    <%= form.collection_select :category_id, @categories, :id, :name, {prompt: true}, class: "select" %>
+    <%#= form.collection_select :category_id, @categories, :id, :name, { prompt: 'All Categories' }, { class: 'select' } %>
+    <%#= form.collection_select :category_id, @categories, :id, :name, { include_blank: "All Categories" }, { class: "input" } %>
+  </div>
+  <div class="control">
     <%= form.submit "Search", class: "button is-info" %>
   </div>
 <% end %>
+
 
 <div class="columns is-multiline">
   <% @products.each do |product| %>

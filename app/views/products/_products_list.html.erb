@@ -1,0 +1,20 @@
+<div class="columns is-multiline">
+  <% products.each do |product| %>
+    <div class="column is-one-quarter">
+      <div class="card">
+        <% if product.image.attached? %>
+        <%= image_tag product.image, class: 'card-image' %>
+        <% else %>
+          <div class="card-image">No image available</div>
+        <% end %>
+        <div class="card-content">
+          <div class="content">
+            <%= link_to product.name, product_path(product), class: "has-text-weight-bold" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate products %>

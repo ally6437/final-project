@@ -1,16 +1,43 @@
-<%= form_with url: search_products_path, method: :get, local: true do %>
-  <div class="field">
-    <%= label_tag :search, "Search" %>
-    <%= text_field_tag :search, params[:search] %>
-  </div>
+<p style="color: green"><%= notice %></p>
 
-  <div class="field">
-    <%= label_tag :category_id, "Category" %>
-    <%= select_tag :category_id, options_for_select(@categories.map { |c| [c.name, c.id] }, selected: params[:category_id]), include_blank: "All Categories" %>
-  </div>
+<h1 class="title">Search Results</h1>
 
-  <div class="field">
-    <%= submit_tag "Search", class: "button is-primary" %>
+<!--
+<%= form_with url: search_products_path, method: :get, local: true, class: "field has-addons" do |form| %>
+  <div class="control">
+    <%= form.label :query, "Search", class: "label" %>
+    <%= form.text_field :query, value: params[:query], class: "input" %>
+  </div>
+  <div class="control">
+    <%= form.submit "Search", class: "button is-info" %>
   </div>
 <% end %>
+
+<%= render 'products_list', products: @products %>
+-->
+<% if @products.any? %>
+  <div class="columns is-multiline">
+    <% @products.each do |product| %>
+      <div class="column is-one-quarter">
+        <div class="card">
+          <% if product.image.attached? %>
+            <%= image_tag product.image, class: 'card-image' %>
+          <% else %>
+            <div class="card-image">No image available</div>
+          <% end %>
+          <div class="card-content">
+            <div class="content">
+              <%= link_to product.name, product_path(product), class: "has-text-weight-bold" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= paginate @products %>
+<% else %>
+  <p>No products found.</p>
+<% end %>
+
 

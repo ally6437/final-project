@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_categories
 
   def index
-    #@products = Product.all
-    @products = Product.all.page(params[:page]).per(12)
+    @products = Product.all.page(params[:page]).per(8)
   end
 
   def show
@@ -11,9 +10,13 @@ class ProductsController < ApplicationController
   end
 
   def search
-    #@products = Product.joins(:category).where("products.name ILIKE ? OR categories.name ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
-    @products = Product.joins(:category).where("categories.name LIKE ? OR products.name LIKE ? OR products.description LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
-    render :index
+    @query = params[:query]
+    @category_id = params[:category_id]
+    @products = Product.joins(:category).where("categories.name LIKE ? OR products.name LIKE ? OR products.description LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    @products = @products.where(category_id: @category_id) if @category_id.present?
+    @products = @products.page(params[:page]).per(8)
+    render :search
+
   end
 
   def category
