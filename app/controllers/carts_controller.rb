@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  #before_action :set_cart, only: %i[ show edit update destroy ]
+  before_action :initialize_session
+  before_action :load_cart
 
   # GET /carts or /carts.json
   def index
@@ -8,6 +10,18 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+  end
+
+  def add_to_cart
+    product_id = params[:product_id]
+    @cart[product_id] = (@cart[product_id] || 0) + 1
+    redirect_to carts_path, notice: "Product added to cart"
+  end
+
+  def remove_from_cart
+    product_id = params[:product_id]
+    @cart.delete(product_id)
+    redirect_to carts_path, notice: "Product removed from cart"
   end
 
   # GET /carts/new
@@ -58,6 +72,15 @@ class CartsController < ApplicationController
   end
 
   private
+
+    def initialize_session
+     session[:cart] ||= {}
+     end
+
+    def load_cart
+      @cart = session[:cart]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = Cart.find(params[:id])

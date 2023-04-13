@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   resources :payments
   resources :orders
   resources :cart_items
-  resources :carts
+  resources :carts, only: [:index] do
+    collection do
+      post 'add_to_cart', to: 'carts#add_to_cart', as: 'add_to_cart'
+      post 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
+    end
+  end
   resources :order_items
   resources :products, only: [:index, :show]
   resources :categories

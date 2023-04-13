@@ -34,11 +34,14 @@
         <div class="card-content">
           <div class="content">
             <%= link_to product.name, product_path(product), class: "has-text-weight-bold" %>
+            <%= button_to "Add to cart", add_to_cart_carts_path(product_id: product.id), class: "button is-info" %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
+
 
 <%= paginate @products %>

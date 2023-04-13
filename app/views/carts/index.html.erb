@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Carts</h1>
-
+<!--
 <div id="carts">
   <% @carts.each do |cart| %>
     <%= render cart %>
@@ -10,5 +10,30 @@
     </p>
   <% end %>
 </div>
+-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.each do |product_id, quantity| %>
+      <% product = Product.find(product_id) %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= quantity %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td><%= number_to_currency(product.price * quantity) %></td>
+        <td><%= link_to "Remove", remove_from_cart_carts_path(product_id: product_id), method: :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "New cart", new_cart_path %>
