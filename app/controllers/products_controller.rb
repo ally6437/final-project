@@ -7,16 +7,19 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @category = @product.category
   end
 
   def search
-    @query = params[:query]
-    @category_id = params[:category_id]
-    @products = Product.joins(:category).where("categories.name LIKE ? OR products.name LIKE ? OR products.description LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
-    @products = @products.where(category_id: @category_id) if @category_id.present?
-    @products = @products.page(params[:page]).per(8)
-    render :search
-
+    #@query = params[:query]
+    #@category_id = params[:category_id]
+    #@products = Product.joins(:category).where("categories.name LIKE ? OR products.name LIKE ? OR products.description LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    #@products = @products.where(category_id: @category_id) if @category_id.present?
+    #@products = @products.page(params[:page]).per(8)
+    #render :search
+    wildcard_search = "%#{params[:keywords]}%"
+    category_search = "%#{params[:category]}%"
+    @products = Product.where("name LIKE ?", wildcard_search).where("category_id LIKE?", category_search)
   end
 
   def category
