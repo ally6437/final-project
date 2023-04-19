@@ -3,20 +3,22 @@
 
 <h1 class="title">Search Results</h1>
 
-<% if(@products.count == 0)%>
-<p style = "font-size:3rem; color:red">
-No products found for: <%= params[:keywords]%>
-</p>
-<%else%>
-<p>
-Products found for: <%= params[:keywords]%>
-</p>
-<ul>
-<% @products.each do |product|%>
-<li><%= link_to product.name, product %></li>
-<%end%>
-</ul>
-<%end%>
+<% if(@products.count == 0) %>
+  <p class="has-text-centered has-text-danger is-size-3">
+    Sorry, no products found for: <%= params[:keywords] %>
+  </p>
+<% else %>
+  <p>
+    Products found for: <%= params[:keywords] %>
+  </p>
+  <div class="columns is-multiline">
+    <% @products.each do |product| %>
+      <div class="column is-one-third">
+        <div class="box">
+          <h2 class="title is-4"><%= link_to product.name, product %></h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <%= paginate @products %>
-
-
