@@ -71,6 +71,21 @@ class CartsController < ApplicationController
     end
   end
 
+  # update quantity
+  def update_quantity
+    product_id = params[:product_id]
+    quantity = params[:quantity].to_i
+
+    if quantity > 0
+      @cart[product_id] = quantity
+      redirect_to carts_path, notice: "Quantity updated"
+    else
+      @cart.delete(product_id)
+      redirect_to carts_path, notice: "Product removed from cart"
+    end
+  end
+
+
   private
 
     def initialize_session
