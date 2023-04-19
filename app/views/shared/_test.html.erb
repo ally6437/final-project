@@ -1,0 +1,11 @@
+<div>
+  <%= form_with(url: search_products_path, method: :get, local: true) do%>
+  <div>
+    <nav>
+    <%= text_field_tag(:keywords,nil,class:"input", placeholder:"Search for products")%>
+    <%=select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}, params[:category]), prompt:"All categories"%>
+    <%=submit_tag("search")%>
+    </nav>
+  </div>
+  <%end%>
+</div>

@@ -2,36 +2,17 @@
 
 <h1 class="title">Products</h1>
 
-<!--
-<%= form_with url: search_products_path, method: :get, local: true, class: "field has-addons" do |form| %>
-  <div class="control">
-    <%= form.label :query, "Search", class: "label" %>
-    <%= form.text_field :query, value: params[:query], class: "input" %>
-  </div>
-  <div class="control">
-    <%#= form.submit "Search", class: "button is-info" %>
-    <%= form.label :category_id, "Category", class: "label" %>
-    <%= form.collection_select :category_id, @categories, :id, :name, {prompt: true}, class: "select" %>
-    <%#= form.collection_select :category_id, @categories, :id, :name, { prompt: 'All Categories' }, { class: 'select' } %>
-    <%#= form.collection_select :category_id, @categories, :id, :name, { include_blank: "All Categories" }, { class: "input" } %>
-  </div>
-  <div class="control">
-    <%= form.submit "Search", class: "button is-info" %>
-  </div>
-<% end %>
--->
 <div>
-  <%= form_with (url: search_products_path, method: :get, local: true) do%>
+  <%= form_with(url: search_products_path, method: :get, local: true) do%>
   <div>
     <nav>
     <%= text_field_tag(:keywords,nil,class:"input", placeholder:"Search for products")%>
     <%=select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}, params[:category]), prompt:"All categories"%>
     <%=submit_tag("search")%>
     </nav>
-    </div>
-    <%end%>
-    </div>
-
+  </div>
+  <%end%>
+</div>
 
 <div class="columns is-multiline">
   <% @products.each do |product| %>
