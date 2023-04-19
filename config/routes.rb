@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:index] do
     collection do
       post 'add_to_cart', to: 'carts#add_to_cart', as: 'add_to_cart'
-      post 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
-      #delete '/carts/remove_from_cart', to: 'carts#remove_from_cart', as: :remove_from_cart
-
+      get 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
       post 'update_quantity', to: 'carts#update_quantity', as: 'update_quantity'
     end
   end
