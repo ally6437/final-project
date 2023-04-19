@@ -7,6 +7,10 @@
         <% Category.all.each do |category| %>
           <%= link_to category.name, category_path(category), class: 'navbar-item' %>
         <% end %>
+
+        <% unless request.path == carts_path %>
+          <%= link_to raw("🛒 View Cart"), carts_path, class: 'navbar-item' %>
+        <% end %>
       </div>
     </div>
   </div>
