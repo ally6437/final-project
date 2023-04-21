@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_175507) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_185037) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -148,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_175507) do
     t.integer "cart_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "province"
     t.index ["cart_id"], name: "index_users_on_cart_id"
   end
 
