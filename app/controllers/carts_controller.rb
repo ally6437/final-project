@@ -6,6 +6,7 @@ class CartsController < ApplicationController
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
+    @total_amount = calculate_total
   end
 
   # GET /carts/1 or /carts/1.json
@@ -104,5 +105,15 @@ class CartsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def cart_params
       params.require(:cart).permit(:quantity, :total, :user_id)
+    end
+
+    # Calculate total amount in cart
+    def calculate_total
+      total = 0
+      @cart.each do |product_id, quantity|
+        product = Product.find(product_id)
+        total += product.price * quantity
+      end
+      total
     end
 end
