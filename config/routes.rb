@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       get 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
       post 'update_quantity', to: 'carts#update_quantity', as: 'update_quantity'
     end
+    member do
+      post 'proceed_to_order'
+    end
   end
+
   resources :order_items
   resources :products, only: [:index, :show]
   resources :categories

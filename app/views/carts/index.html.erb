@@ -59,5 +59,9 @@
 <div class="total-amount">
   <h3>Total Amount: <%= number_to_currency(@total_amount) %></h3>
 </div>
-
+<div>
+  <%= form_for :cart, url: proceed_to_order_cart_path(@cart), method: :post do |f| %>
+    <%= f.submit "Proceed to Order", class: "btn btn-primary" %>
+  <% end %>
+</div>
 <%#= link_to "New cart", new_cart_path %>

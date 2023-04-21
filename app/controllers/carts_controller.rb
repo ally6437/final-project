@@ -7,10 +7,12 @@ class CartsController < ApplicationController
   def index
     @carts = Cart.all
     @total_amount = calculate_total
+    @cart = current_user.cart
   end
 
   # GET /carts/1 or /carts/1.json
   def show
+    @cart = Cart.find(params[:id])
   end
 
   def add_to_cart
@@ -84,6 +86,18 @@ class CartsController < ApplicationController
       @cart.delete(product_id)
       redirect_to carts_path, notice: "Product removed from cart"
     end
+  end
+
+  # order
+  def proceed_to_order
+    @cart = Cart.find(params[:id])
+    @order = Order.new
+    @order.user = current_user
+    @cart.cart_items.each do |cart_item|
+      @order.order_items.build(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.product.price)
+    end
+    @order.save
+    redirect_to new_order_path(@order)
   end
 
 

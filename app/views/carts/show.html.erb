@@ -7,4 +7,9 @@
   <%= link_to "Back to carts", carts_path %>
 
   <%= button_to "Destroy this cart", @cart, method: :delete %>
+
+<%= form_for :cart, url: proceed_to_order_cart_path(@cart), method: :post do |f| %>
+  <%= f.submit "Proceed to Order", class: "btn btn-primary" %>
+<% end %>
+
 </div>
