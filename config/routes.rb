@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users #ActiveAdmin::Devise.config
+  devise_scope :user do
+    match '/users/sign_out' => 'sessions#destroy', via: [:get, :delete]
+  end
+
   resources :provinces
   #get 'pages/show'
   get '/pages/:title', to: 'pages#show', as: 'pages_show'
