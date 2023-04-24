@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_categories
+  before_action :authenticate_user!
 
   def index
     @products = Product.all.page(params[:page]).per(8)

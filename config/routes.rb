@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :provinces
   #get 'pages/show'
   get '/pages/:title', to: 'pages#show', as: 'pages_show'
