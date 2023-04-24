@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :order_items
   resources :products, only: [:index, :show]
   resources :categories
-  resources :users
+  #resources :users
   resources :products do
     collection do
       get 'search'

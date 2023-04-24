@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_175507) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_185114) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -138,19 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_175507) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone_number"
-    t.string "address"
-    t.integer "cart_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_users_on_cart_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
@@ -162,5 +149,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_175507) do
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "products", "categories"
-  add_foreign_key "users", "carts"
 end
