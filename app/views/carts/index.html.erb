@@ -34,8 +34,8 @@
   <h3>Total Amount: <%= number_to_currency(@total_amount) %></h3>
 </div>
 <% if user_signed_in? %>
-  <%= link_to 'Proceed to Checkout', new_order_path, class: 'btn btn-primary' %>
+  <%= button_tag 'Proceed to Checkout', class: 'update-button', onclick: "location.href='#{new_order_path}';" %>
 <% else %>
-  <%= link_to 'Sign In to Checkout', new_user_session_path, class: 'btn btn-primary' %>
+  <%= button_tag 'Sign In to Checkout', class: 'update-button', onclick: "location.href='#{new_user_session_path}';" %>
 <% end %>
 <%#= link_to "New cart", new_cart_path %>
