@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :cart
 
   def initialize_session
-    # this will initialize shopping cart
+    # initialize shopping cart
     session[:shopping_cart] ||= [] # empty array of product IDs
   end
 
