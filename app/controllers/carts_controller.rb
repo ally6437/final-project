@@ -11,6 +11,8 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    @cart_items = cart
+    @cart_total = @cart_items.sum(&:price)
   end
 
   def add_to_cart
@@ -116,4 +118,5 @@ class CartsController < ApplicationController
       end
       total
     end
-end
+
+  end

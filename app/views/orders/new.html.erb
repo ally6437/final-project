@@ -14,14 +14,16 @@
   <%= f.label :province, 'Province' %>
   <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name, current_user.province_id) %>
   <br>
-  <%= f.label :total, 'Total' %>
-  <%= f.number_field :total, value: @total, readonly: true %>
+  <%#= f.label :total, 'Total' %>
+  <%#= f.number_field :total, value: @total, readonly: true %>
+  <%= f.label :cart_total, 'Cart Total' %>
+  <%= f.number_field :cart_total, value: @cart_total, readonly: true %>
+  <br>
+  <%= f.label :total_with_taxes, 'Total with Taxes' %>
+  <%= f.number_field :total_with_taxes, value: @total_with_taxes, readonly: true %>
   <br>
   <%= f.submit 'Checkout', class: 'btn btn-primary' %>
 <% end %>
-
-
-
 <div>
-  <%= link_to "Back to orders", orders_path %>
+  <%= link_to "Back to Cart", carts_path %>
 </div>
