@@ -1,0 +1,17 @@
+<h1>Edit Address</h1>
+
+<%= form_for(current_user, url: update_address_path) do |f| %>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :province_id, 'Province' %><br />
+    <%= f.collection_select :province_id, Province.all, :id, :name, prompt: 'Select your province' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Address" %>
+  </div>
+<% end %>

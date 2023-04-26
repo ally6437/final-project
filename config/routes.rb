@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
     match '/users/sign_out' => 'sessions#destroy', via: [:get, :delete]
+    get '/users/edit_address', to: 'users#edit_address', as: 'edit_address'
+    patch '/users/update_address', to: 'users#update_address', as: 'update_address'
   end
 
   resources :provinces
