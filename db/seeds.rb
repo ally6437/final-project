@@ -19,6 +19,28 @@ Payment.destroy_all
 Product.destroy_all
 Category.destroy_all
 User.destroy_all
+Province.destroy_all
+
+provinces = [
+  { name: 'British Columbia', tax_rate: 12.0 },
+  { name: 'Alberta', tax_rate: 5.0 },
+  { name: 'Saskatchewan', tax_rate: 11.0 },
+  { name: 'Manitoba', tax_rate: 12.0 },
+  { name: 'Ontario', tax_rate: 13.0 },
+  { name: 'Quebec', tax_rate: 14.975 },
+  { name: 'New Brunswick', tax_rate: 15.0 },
+  { name: 'Nova Scotia', tax_rate: 15.0 },
+  { name: 'Prince Edward Island', tax_rate: 15.0 },
+  { name: 'Newfoundland and Labrador', tax_rate: 15.0 },
+  { name: 'Yukon', tax_rate: 5.0 },
+  { name: 'Northwest Territories', tax_rate: 5.0 },
+  { name: 'Nunavut', tax_rate: 5.0 }
+]
+
+provinces.each do |province|
+  Province.create!(province)
+end
+
 
 csv_text = File.read(Rails.root.join('db', 'flowers.csv'))
 csv = CSV.parse(csv_text, headers: true)

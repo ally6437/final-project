@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users #ActiveAdmin::Devise.config
+  devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
     match '/users/sign_out' => 'sessions#destroy', via: [:get, :delete]
   end
