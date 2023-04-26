@@ -1,8 +1,26 @@
 <h1>New order</h1>
 
-<%= render "form", order: @order %>
+<%#= render "form", order: @order %>
 
 <br>
+
+<%= form_for @order do |f| %>
+  <%= f.label :email, 'Email' %>
+  <%= f.email_field :email, value: current_user.email, readonly: true %>
+  <br>
+  <%= f.label :address, 'Address' %>
+  <%= f.text_field :address, value: current_user.address %>
+  <br>
+  <%= f.label :province, 'Province' %>
+  <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name, current_user.province_id) %>
+  <br>
+  <%= f.label :total, 'Total' %>
+  <%= f.number_field :total, value: @total, readonly: true %>
+  <br>
+  <%= f.submit 'Checkout', class: 'btn btn-primary' %>
+<% end %>
+
+
 
 <div>
   <%= link_to "Back to orders", orders_path %>

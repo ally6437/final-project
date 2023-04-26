@@ -1,17 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Carts</h1>
-<!--
-<div id="carts">
-  <% @carts.each do |cart| %>
-    <%= render cart %>
-    <p>
-      <%= link_to "Show this cart", cart %>
-    </p>
-  <% end %>
-</div>
--->
-
 <table>
   <thead>
     <tr>
@@ -22,20 +10,6 @@
       <th></th>
     </tr>
   </thead>
-  <!--
-  <tbody>
-    <% @cart.each do |product_id, quantity| %>
-      <% product = Product.find(product_id) %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= quantity %></td>
-        <td><%= number_to_currency(product.price) %></td>
-        <td><%= number_to_currency(product.price * quantity) %></td>
-        <td><%= link_to "Remove", remove_from_cart_carts_path(product_id: product_id), method: :post %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  -->
   <tbody>
     <% @cart.each do |product_id, quantity| %>
       <% product = Product.find(product_id) %>
@@ -59,5 +33,9 @@
 <div class="total-amount">
   <h3>Total Amount: <%= number_to_currency(@total_amount) %></h3>
 </div>
-
+<% if user_signed_in? %>
+  <%= link_to 'Proceed to Checkout', new_order_path, class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Sign In to Checkout', new_user_session_path, class: 'btn btn-primary' %>
+<% end %>
 <%#= link_to "New cart", new_cart_path %>

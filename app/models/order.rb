@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
-  #belongs_to :user
+  belongs_to :user
   belongs_to :payment
+  belongs_to :province
   has_many :order_items, dependent: :destroy
 
   validates :total, numericality: { greater_than_or_equal_to: 0 }
