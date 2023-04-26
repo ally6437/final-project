@@ -12,11 +12,14 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-   puts "Session shopping cart: #{session[:shopping_cart].inspect}"
+   puts "Inside the new action" # Add this line
    @order = current_user.orders.build
-   @cart_items = cart
-   #@cart_total, @total_with_taxes = calculate_total_with_taxes(current_user, @cart_items)
-   cart_items_with_quantities = @cart_items.map { |item| OpenStruct.new(product: item, quantity: session[:shopping_cart].count(item.id)) }
+   #@cart_items = cart
+   #cart_items_with_quantities = @cart_items.map { |item| OpenStruct.new(product: item, quantity: session[:shopping_cart].count(item.id)) }
+   #@cart_total, @total_with_taxes = calculate_total_with_taxes(current_user, cart_items_with_quantities)
+   @cart_items = current_user.cart ? current_user.cart.cart_items : []
+
+   cart_items_with_quantities = @cart_items.map { |item| OpenStruct.new(product: item.product, quantity: item.quantity) }
    @cart_total, @total_with_taxes = calculate_total_with_taxes(current_user, cart_items_with_quantities)
   end
 

@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @category = @product.category
+    # Set breadcrumbs
+    @category_breadcrumb = @category
+    @product_breadcrumb = @product
   end
 
   def search

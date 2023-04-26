@@ -1,29 +1,45 @@
-<h1>New order</h1>
 
-<%#= render "form", order: @order %>
+  <div class="container">
+    <h1 class="title">New Order Invoice</h1>
+    <%= form_for @order do |f| %>
+      <div class="field">
+        <%= f.label :email, 'Email', class: 'label' %>
+        <div class="control">
+          <%= f.email_field :email, value: current_user.email, readonly: true, class: 'input' %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :address, 'Address', class: 'label' %>
+        <div class="control">
+          <%= f.text_field :address, value: current_user.address, class: 'input' %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :province, 'Province', class: 'label' %>
+        <div class="control">
+          <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name, current_user.province_id), class: 'select' %>
+        </div>
+      </div>
+      <div class="field">
 
-<br>
+        <div class="control">
+        <%= f.label :cart_total, 'Cart Total', class: 'label' %>
+          <%= f.number_field :cart_total, value: @cart_total, readonly: true , class: 'input'%>
+        </div>
+      </div>
+      <div class="field">
 
-<%= form_for @order do |f| %>
-  <%= f.label :email, 'Email' %>
-  <%= f.email_field :email, value: current_user.email, readonly: true %>
-  <br>
-  <%= f.label :address, 'Address' %>
-  <%= f.text_field :address, value: current_user.address %>
-  <br>
-  <%= f.label :province, 'Province' %>
-  <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name, current_user.province_id) %>
-  <br>
-  <%#= f.label :total, 'Total' %>
-  <%#= f.number_field :total, value: @total, readonly: true %>
-  <%= f.label :cart_total, 'Cart Total' %>
-  <%= f.number_field :cart_total, value: @cart_total, readonly: true %>
-  <br>
-  <%= f.label :total_with_taxes, 'Total with Taxes' %>
-  <%= f.number_field :total_with_taxes, value: @total_with_taxes, readonly: true %>
-  <br>
-  <%= f.submit 'Checkout', class: 'btn btn-primary' %>
-<% end %>
-<div>
-  <%= link_to "Back to Cart", carts_path %>
-</div>
+        <div class="control">
+         <%= f.label :total_with_taxes, 'Total with Taxes', class: 'label' %>
+          <%= f.number_field :total_with_taxes, value: @total_with_taxes, readonly: true , class: 'input'%>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit 'Checkout', class: 'button is-primary' %>
+        </div>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "Back to Cart", carts_path, class: 'button is-link' %>
+    </div>

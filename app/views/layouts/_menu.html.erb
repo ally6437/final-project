@@ -1,6 +1,7 @@
 <nav class="navbar">
   <div class="container">
     <div class="navbar-menu">
+
       <div class="navbar-start">
         <%= link_to 'All Products', products_path, class: 'navbar-item' %>
 
@@ -12,6 +13,7 @@
           <%= link_to raw("🛒 View Cart"), carts_path, class: 'navbar-item' %>
         <% end %>
       </div>
+
       <div class="navbar-end">
         <% if user_signed_in? %>
           <%= link_to "Edit Address", edit_address_path(current_user), class: 'navbar-item' %>
@@ -21,6 +23,8 @@
           <%= link_to "Sign up", new_user_registration_path, class: 'navbar-item' %>
         <% end %>
       </div>
+      <%= breadcrumbs %>
     </div>
+
   </div>
 </nav>

@@ -10,6 +10,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @products = @category.products
+    # Set breadcrumbs
+    @category_breadcrumb = @category
   end
 
 

@@ -13,15 +13,19 @@
 
   <body>
     <%= render 'layouts/menu' %>
+    <div class="container">
 
+    <%#= yield %>
+    <!--
     <% flash.each do |key, value| %>
       <div class="notification is-<%= key %>">
         <button class="delete"></button>
         <%= value %>
       </div>
     <% end %>
-
+    -->
     <%= yield %>
+    </div>
   </body>
 </html>
 
